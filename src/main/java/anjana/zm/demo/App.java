@@ -1,9 +1,8 @@
 package anjana.zm.demo;
 
-import anjana.zm.demo.config.AppConfig;
-import anjana.zm.demo.thread.PrintTask;
+import anjana.zm.demo.components.PrintTask;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import static java.lang.System.out;
@@ -11,9 +10,9 @@ import static java.lang.System.out;
 public class App {
 	public static void main(String[] args) {
 
-		
-		ApplicationContext context = new AnnotationConfigApplicationContext(
-				AppConfig.class);
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Config.xml");
+
 
 		ThreadPoolTaskExecutor taskExecutor = (ThreadPoolTaskExecutor) context
 				.getBean("taskExecutor");
@@ -21,15 +20,18 @@ public class App {
 
 		PrintTask printTask1 = (PrintTask) context.getBean("printTask");
 		printTask1.setName("Thread 1");
+		out.println("task1 is added");
 		taskExecutor.execute(printTask1);
 
 
 		PrintTask printTask2 = (PrintTask) context.getBean("printTask");
 		printTask2.setName("Thread 2");
+		out.println("task2 is added");
 		taskExecutor.execute(printTask2);
 
 		PrintTask printTask3 = (PrintTask) context.getBean("printTask");
 		printTask3.setName("Thread 3");
+		out.println("task3 is added");
 		taskExecutor.execute(printTask3);
 
 		for (;;) {

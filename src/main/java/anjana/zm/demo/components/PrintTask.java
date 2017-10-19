@@ -1,4 +1,4 @@
-package anjana.zm.demo.thread;
+package anjana.zm.demo.components;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
