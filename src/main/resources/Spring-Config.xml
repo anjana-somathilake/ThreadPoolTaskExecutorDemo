@@ -7,20 +7,17 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <context:component-scan base-package="anjana.zm.demo.components" />
 
-
-
-
 	<bean id="taskExecutor"
 		  class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-		<property name="corePoolSize" value="1"/>
-		<property name="maxPoolSize" value="1"/>
-		<property name="queueCapacity" value="2"/>
+		<property name="corePoolSize" value="10"/>
+		<property name="maxPoolSize" value="10"/>
+		<property name="queueCapacity" value="200"/>
 		<property name="WaitForTasksToCompleteOnShutdown" value="true"/>
 	</bean>
 
-	<!--<bean id="asyncEventBus" class="com.google.common.eventbus.AsyncEventBus">-->
-		<!--<constructor-arg name="identifier" value="mobile_async_event_bus"/>-->
-		<!--<constructor-arg name="executor" ref="taskExecutor"/>-->
-	<!--</bean>-->
+	<bean id="asyncEventBus" class="com.google.common.eventbus.AsyncEventBus">
+		<constructor-arg name="identifier" value="mobile_async_event_bus"/>
+		<constructor-arg name="executor" ref="taskExecutor"/>
+	</bean>
 
 </beans>
